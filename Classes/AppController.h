@@ -57,7 +57,7 @@
 	PaintingWindow		*window;
 	PaintingView		*drawingView;
 
-	SoundEffect			*erasingSound;
+	SoundEffect			*erasingSound, *cheerSound;
 	SoundEffect			*selectSound;
 	CFTimeInterval		lastTime;
     

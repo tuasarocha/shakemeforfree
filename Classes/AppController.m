@@ -182,7 +182,11 @@ static void HSL2RGB(float h, float s, float l, float* outR, float* outG, float* 
 	
 	// Load the sounds
 	NSBundle *mainBundle = [NSBundle mainBundle];	
-	erasingSound = [[SoundEffect alloc] initWithContentsOfFile:[mainBundle pathForResource:@"Erase" ofType:@"caf"]];
+	//erasingSound = [[SoundEffect alloc] initWithContentsOfFile:[mainBundle pathForResource:@"Erase" ofType:@"caf"]];
+    
+	erasingSound = [[SoundEffect alloc] initWithContentsOfFile:[mainBundle pathForResource:@"Bomb" ofType:@"caf"]];
+    cheerSound = [[SoundEffect alloc] initWithContentsOfFile:[mainBundle pathForResource:@"Cheering" ofType:@"caf"]];
+    
 	selectSound =  [[SoundEffect alloc] initWithContentsOfFile:[mainBundle pathForResource:@"Select" ofType:@"caf"]];
 
 	// Erase the view when recieving a notification named "shake" from the NSNotificationCenter object
@@ -201,7 +205,6 @@ static void HSL2RGB(float h, float s, float l, float* outR, float* outG, float* 
     
     
     // eraser
-    
     UIButton *eraser = [UIButton buttonWithType:UIButtonTypeCustom];
     [eraser setFrame:CGRectMake(280, 20, 32, 32)];
     [eraser setImage:[UIImage imageNamed:@"Eraser.png"] forState:UIControlStateNormal];
@@ -263,9 +266,15 @@ static void HSL2RGB(float h, float s, float l, float* outR, float* outG, float* 
 {
 	if(CFAbsoluteTimeGetCurrent() > lastTime + kMinEraseInterval) {
 		[erasingSound play];
+        [self performSelector:@selector(playCheerSound) withObject:nil afterDelay:1];
 		[drawingView erase];
 		lastTime = CFAbsoluteTimeGetCurrent();
 	}
+}
+
+- (void)playCheerSound
+{
+    [cheerSound play];
 }
 
 - (UIImage *) saveScreenImage {

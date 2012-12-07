@@ -162,7 +162,6 @@
 		recordedPaths = [NSMutableArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Recording" ofType:@"data"]];
 		if([recordedPaths count]) {
 			[self performSelector:@selector(playback:) withObject:recordedPaths afterDelay:0.2];
-            [self performSelector:@selector(erase) withObject:nil afterDelay:2];
         }
 	}
 	
@@ -324,7 +323,9 @@
 	// Render the next path after a short delay 
 	[recordedPaths removeObjectAtIndex:0];
 	if([recordedPaths count])
-		[self performSelector:@selector(playback:) withObject:recordedPaths afterDelay:0.01];
+		[self performSelector:@selector(playback:) withObject:recordedPaths afterDelay:0.005];
+    else //finish shake me
+        [self performSelector:@selector(erase) withObject:nil afterDelay:0.5];
 }
 
 
