@@ -5,20 +5,35 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleDisplayName</key>
-	<string>Shake me for free!!</string>
+	<string>Shake me for Free!</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>Icon.png</string>
-		<string>Icon@2x.png</string>
+		<string>57x57.png</string>
+		<string>114x114.png</string>
 		<string>Icon-72.png</string>
 		<string>Icon-Small.png</string>
 		<string>Icon-Small-50.png</string>
 		<string>Icon-Small@2x.png</string>
 	</array>
+	<key>CFBundleIcons</key>
+	<dict>
+		<key>CFBundlePrimaryIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string>57x57.png</string>
+				<string>114x114.png</string>
+				<string>Icon-72.png</string>
+				<string>Icon-Small.png</string>
+				<string>Icon-Small-50.png</string>
+				<string>Icon-Small@2x.png</string>
+			</array>
+		</dict>
+	</dict>
 	<key>CFBundleIdentifier</key>
 	<string>com.yourcompany.${PRODUCT_NAME:identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>

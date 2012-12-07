@@ -54,7 +54,7 @@
 
 #define kPaletteHeight			30
 #define kPaletteSize			5
-#define kMinEraseInterval		0.5
+#define kMinEraseInterval		0.1
 
 // Padding for margins
 #define kLeftMargin				70 //10
@@ -160,7 +160,7 @@ static void HSL2RGB(float h, float s, float l, float* outR, float* outG, float* 
 	[segmentedControl addTarget:self action:@selector(changeBrushColor:) forControlEvents:UIControlEventValueChanged];
 	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 	// Make sure the color of the color complements the black background
-	segmentedControl.tintColor = [UIColor darkGrayColor];
+	segmentedControl.tintColor = [UIColor lightGrayColor];
 	// Set the third color (index values start at 0)
 	segmentedControl.selectedSegmentIndex = 2;
 	
@@ -188,6 +188,8 @@ static void HSL2RGB(float h, float s, float l, float* outR, float* outG, float* 
     cheerSound = [[SoundEffect alloc] initWithContentsOfFile:[mainBundle pathForResource:@"Applause" ofType:@"caf"]];
     
 	selectSound =  [[SoundEffect alloc] initWithContentsOfFile:[mainBundle pathForResource:@"Select" ofType:@"caf"]];
+    
+	shrinkSound =  [[SoundEffect alloc] initWithContentsOfFile:[mainBundle pathForResource:@"Shooting" ofType:@"caf"]];
 
 	// Erase the view when recieving a notification named "shake" from the NSNotificationCenter object
 	// The "shake" nofification is posted by the PaintingWindow object when user shakes the device
@@ -223,6 +225,8 @@ static void HSL2RGB(float h, float s, float l, float* outR, float* outG, float* 
 }
 - (void)tapBlockAction
 {
+    [shrinkSound play];
+    
     // save to album
     UIImage *saveImage = [self saveScreenImage];
     UIImageView *bigImageView = [[UIImageView alloc] initWithImage:saveImage];
@@ -245,6 +249,7 @@ static void HSL2RGB(float h, float s, float l, float* outR, float* outG, float* 
 // Release resources when they are no longer needed,
 - (void) dealloc
 {
+    [cheerSound release];
 	[selectSound release];
 	[erasingSound release];
 	[drawingView release];
@@ -273,7 +278,7 @@ static void HSL2RGB(float h, float s, float l, float* outR, float* outG, float* 
 {
 	if(CFAbsoluteTimeGetCurrent() > lastTime + kMinEraseInterval) {
 		[erasingSound play];
-        [self performSelector:@selector(playCheerSound) withObject:nil afterDelay:1];
+        [self performSelector:@selector(playCheerSound) withObject:nil afterDelay:0.7];
 		[drawingView erase];
 		lastTime = CFAbsoluteTimeGetCurrent();
 	}

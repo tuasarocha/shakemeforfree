@@ -58,7 +58,7 @@
 	PaintingView		*drawingView;
 
 	SoundEffect			*erasingSound, *cheerSound;
-	SoundEffect			*selectSound;
+	SoundEffect			*selectSound, *shrinkSound;
 	CFTimeInterval		lastTime;
     
     UIButton *boxBtn;
