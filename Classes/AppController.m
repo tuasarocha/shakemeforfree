@@ -57,7 +57,7 @@
 #define kMinEraseInterval		0.5
 
 // Padding for margins
-#define kLeftMargin				66.0 //10
+#define kLeftMargin				70 //10
 #define kTopMargin				10.0
 #define kRightMargin			10.0
  
@@ -185,7 +185,7 @@ static void HSL2RGB(float h, float s, float l, float* outR, float* outG, float* 
 	//erasingSound = [[SoundEffect alloc] initWithContentsOfFile:[mainBundle pathForResource:@"Erase" ofType:@"caf"]];
     
 	erasingSound = [[SoundEffect alloc] initWithContentsOfFile:[mainBundle pathForResource:@"Bomb" ofType:@"caf"]];
-    cheerSound = [[SoundEffect alloc] initWithContentsOfFile:[mainBundle pathForResource:@"Cheering" ofType:@"caf"]];
+    cheerSound = [[SoundEffect alloc] initWithContentsOfFile:[mainBundle pathForResource:@"Applause" ofType:@"caf"]];
     
 	selectSound =  [[SoundEffect alloc] initWithContentsOfFile:[mainBundle pathForResource:@"Select" ofType:@"caf"]];
 
@@ -228,8 +228,15 @@ static void HSL2RGB(float h, float s, float l, float* outR, float* outG, float* 
     UIImageView *bigImageView = [[UIImageView alloc] initWithImage:saveImage];
     [window addSubview:bigImageView];
     
+    CGRect boxFrame = boxBtn.frame;
+    boxFrame.size.height = 5;
+    boxFrame.size.width = 5;
+    boxFrame.origin.x = boxBtn.center.x;
+    boxFrame.origin.y = boxBtn.center.y - 5;
+    
+    
     [UIView animateWithDuration:1 animations:^{
-        [bigImageView setFrame:boxBtn.frame];
+        [bigImageView setFrame:boxFrame];
     } completion:^(BOOL finished) {
         [bigImageView setHidden:YES];
     }];

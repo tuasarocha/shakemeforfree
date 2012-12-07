@@ -323,9 +323,9 @@
 	// Render the next path after a short delay 
 	[recordedPaths removeObjectAtIndex:0];
 	if([recordedPaths count])
-		[self performSelector:@selector(playback:) withObject:recordedPaths afterDelay:0.005];
+		[self performSelector:@selector(playback:) withObject:recordedPaths afterDelay:0.001];
     else //finish shake me
-        [self performSelector:@selector(erase) withObject:nil afterDelay:0.5];
+        [self performSelector:@selector(erase) withObject:nil afterDelay:1];
 }
 
 
